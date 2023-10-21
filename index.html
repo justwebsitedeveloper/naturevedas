@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureVedas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style-898dad89dss99dsc8s9232jkjvhwnc.css">
+
+
+</head>
+
+<body>
+
+    <!-- Quote Modal -->
+
+    <div class="modal fade" id="quote-modal" tabindex="-1" role="dialog" aria-labelledby="Quote Modal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body m-2 m-md-4">
+                    <a aria-label="Takes you to the home page" role=link class="close-btn" id="success-close"
+                        data-dismiss="modal">
+                        <img role="logo" aria-label="This is the official logo of NatureVedas" src="./images/cancel.png"
+                            alt="NatureVedas Logo">
+                    </a>
+                    <div class="form-head">
+                        <h2>NatureVedas</h2>
+                        <h3>Get a Quote</h3>
+                    </div>
+                    <form action="formAction.php" id="quote-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4 position-relative">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input required type="text" id="name" name="name" class="form-control"
+                                        placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4 position-relative">
+                                    <label class="form-label" for="email">E-mail</label>
+                                    <input required type="email" name="email" id="email" class="form-control"
+                                        placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4 position-relative">
+                                    <label class="form-label" for="phone">Phone Number</label>
+                                    <input reqired type="text" name="phone" id="phone" class="number-input form-control"
+                                        placeholder="Phone Number">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="message">Message</label>
+                                    <textarea class="form-control" name="message" id="message" placeholder="Message"
+                                        required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">List of Items</label>
+                                <ul id="items-listing">
+
+                                </ul>
+                                <button type="button" data-dismiss="modal"
+                                    class="btn btn-outline-secondary btn-sm add-item-button" data-toggle="modal"
+                                    data-target="#items-modal">Add/Edit Items</button>
+
+                                <label id="list-error"></label>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="section-cta" id="get-quote-submission">GET A
+                                QUOTE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Items -->
+    <div class="modal fade" id="items-modal" tabindex="-1" role="dialog" aria-labelledby="Items Modal"
+        aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body m-2 m-md-4">
+                    <div class="close-items-modal"><img src="./images/cancel.png"></div>
+                    <div class="form-head">
+                        <h3>List of Items</h3>
+                    </div>
+                    <div>
+                        <div class="form-holder form_element_list">
+
+                        </div>
+                    </div>
+
+                    <button type="button" id="add_item"
+                        class="btn btn-outline-secondary btn-sm add-item-row-button">&#10010;</button>
+                    <div class="mt-3 text-center">
+                        <button type="button" id="calculate_items" class="section-cta">Save list</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- SUCCESS MESSAGE -->
+    <div id="successModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content" id="success-content">
+                <div class="modal-body text-center  m-2 m-md-4">
+                    <a id="close-btn" class="success-close close-btn" data-dismiss="modal"><img
+                            src="./images/cancel.png"></a>
+                    <div class="success-info">
+                        <div class="success-img">
+                            <img src="./images/home/footer-logo.png">
+                        </div>
+                        <p class="content-1">Your request for quote successfully submitted</p>
+                        <p class="content-2">You will receive call from our Team.</p>
+                        <p class="content-3">We will keep in touch with you soon.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index"><img src="./images/home/banner-logo.png" alt=""></a>
+            <button class="navbar-toggler sidenav-toggle" type="button" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <img src="./images/home/menu.svg" alt="">
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Green Living</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Our Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Consulting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Wild Tales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidenav">
+        <div class="sidenav-content">
+            <button class="sidenav-toggle sidenav-close" type="button" aria-controls="navbarResponsive"
+                aria-expanded="true" aria-label="Toggle navigation">
+                &times;
+            </button>
+            <ul class="sidenav-links">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Green Living</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Our Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Consulting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog">Wild Tales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact us</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <header>
+        <div id="banner" class="carousel slide" data-ride="carousel">
+
+            <!-- <div class="home-banner-indicators">
+                <div class="container">
+                    <ol class="carousel-indicators">
+                        <li data-target="#banner" data-slide-to="0" class="active"></li>
+                        <li data-target="#banner" data-slide-to="1"></li>
+                        <li data-target="#banner" data-slide-to="2"></li>
+                    </ol>
+                </div>
+            </div> -->
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div class="carousel-item active" style="background-image: url('./images/home/banner.jpg')">
+                    <div class="carousel-content">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="banner-content-left">
+                                        <h1 class="banner-sub-title">NatureVedas</h1>
+                                        <h3 class="banner-title">Simply Living Green</h3>
+                                        <!-- <p class="banner-text">
+                                            We strive to divert people’s attention to the environment and aim to catalyze change, not tomorrow but
+                                            <span>Today and Beginning Now.</span>
+                                        </p> -->
+                                        <a href="#" class="banner-cta" data-toggle="modal"
+                                            data-target="#successModal">Contribute Now</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 signature">
+                                    <img class="banner-sign" src="./images/home/signature.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <a class="carousel-control-next" href="#banner" role="button" data-slide="next">
+                <img src="./images/home/arrow-white.png" alt="">
+                <span class="sr-only">Next</span>
+            </a> -->
+        </div>
+    </header>
+
+    <main>
+
+        <section class="home-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="section-title">About</h2>
+                        <h3 class="section-sub-title">NatureVedas</h3>
+                    </div>
+                    <div class="col-md-6">
+
+                        <p class="section-content">
+                            I grew up in a small city laden with trees and a house full of animals. Living in big cities
+                            as an adult, I sadly realised that we have moved away from nature and our roots and living a
+                            nontoxic life seems an impossible reality.
+                        </p>
+                        <p class="section-content">
+                            Having thus understood the urgent need of protecting our environment for all creatures and
+                            our future generations, I found a deep inclination to do my bit. Based on my experiences in
+                            the concrete jungle and the actual jungle, I want to make the world
+                            a better place by retaining what’s left of it.
+                        </p>
+                        <p class="section-content">
+                            Hence, I set up NatureVedas to help you implement sustainable living practices. And
+                            appreciate the ‘wild’ world a bit more.
+                        </p>
+                        <p class="section-lead">
+                            Let’s make everything better. Let’s make it GREEN!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100">
+                <path fill-opacity="1" d="M 0 60 Q 240 100 380 60 Q 600 0 800 60 L 800 100 L 0 100 L 0 60 " fill="#fff">
+                </path>
+            </svg>
+        </section>
+
+        <section class="home-second">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="section-title">Green living</h2>
+                        <h3 class="section-sub-title">Consciously Sustainable Lifestyles</h3>
+                        <!-- <p class="section-lead full-width">
+                            We are dedicated to developing and producing disposable cutlery and tableware that are convenient for use in our modern world, but that are made from&nbsp;Re&nbsp;resources.
+                        </p> -->
+                        <p class="section-content full-width">
+                            Through this platform, we share knowledge of Nature and conscious living with a 360-degree
+                            approach starting from education, sustainable living, prevention and protection, waste
+                            management and so on.
+                        </p>
+                        <p class="section-content full-width">
+                            We are here to connect with you to bring about sustainable, environment-friendly changes in
+                            lifestyles and the world at large.
+                        </p>
+                        <p class="section-content full-width">
+                            So far, we have been successful in touching the lives of 100+ families who have made small
+                            environment-friendly changes to the way they live to leave a big impact on the planet.
+                        </p>
+                        <!-- <a href="#" class="section-cta">Contribute Now</a> -->
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="./images/home/carbon.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-shop">
+            <div class="container">
+                <div class="section-header">
+                    <div class="row align-items-end">
+                        <div class="col-md-10">
+                            <h2 class="section-title">Our Products</h2>
+                            <h3 class="section-sub-title">Eco-friendly | Sustainable | Reusable</h3>
+                        </div>
+                        <div class="col-md-2 d-none d-md-block text-right">
+                            <a href="#"><img src="./images/home/right.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="products">
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card product-indi shadow">
+                        <img class="card-img-top" src="./images/home/dummy-img.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Wooden Cutlery</h5>
+                            <p class="card-text">6.5 inch wooden spoons in 1000-pack bulk packaging</p>
+                            <div class="product-pricing">
+                                <p>&#8377; 240 INR</p>
+                                <button type="button" data-toggle="modal" data-target="#quote-modal"
+                                    class="section-cta m-0">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-sustainable">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="section-title">Consulting</h2>
+                        <h3 class="section-sub-title">Walking The Path Together</h3>
+                        <p class="section-lead full-width">
+                            We call ourselves the GREEN Consultants.
+                        </p>
+                        <p class="section-content full-width">
+                            We are here to work with you on Sustainable Living Practices, Waste Management, Zero Waste,
+                            and Minimalism and help you adopt these practices at home, office, restaurants and hotels,
+                            parties, events and festivals, as well as travel.
+                        </p>
+                        <p class="section-lead full-width">
+                            Our Working Methodology
+                        </p>
+                        <div class="consulting-icons">
+                            <div class="consulting-icon">
+                                <img src="./images/home/terminal-server-session.png" alt="">
+                                <p>Individual Sessions</p>
+                            </div>
+                            <div class="consulting-icon">
+                                <img src="./images/home/presentation.png" alt="">
+                                <p>Training Programs</p>
+                            </div>
+                            <div class="consulting-icon">
+                                <img src="./images/home/monitor.png" alt="">
+                                <p>Monitoring Programs</p>
+                            </div>
+                            <div class="consulting-icon">
+                                <img src="./images/home/rule.png" alt="">
+                                <p>Workshops</p>
+                            </div>
+                            <div class="consulting-icon">
+                                <img src="./images/home/deal.png" alt="">
+                                <p>Partnerships</p>
+                            </div>
+                            <div class="consulting-icon">
+                                <img src="./images/home/video-conference.png" alt="">
+                                <p>Demos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="./images/home/sustain.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-blog">
+            <div class="container">
+                <div class="section-header">
+                    <div class="row align-items-end">
+                        <div class="col-md-6">
+                            <h2 class="section-title">Blog</h2>
+                            <h3 class="section-sub-title">Nature Love</h3>
+                        </div>
+                        <div class="col-md-6 d-none d-md-block text-right">
+                            <a href="#"><img src="./images/home/right.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="blogs">
+                    <div class="blog" style="background:url(./images/home/blog1.jpg)">
+                        <div class="blog-content">
+                            <a href=""><img src="./images/home/arrow-white.png" alt=""></a>
+                            <h4>We Need Nature Now More Than Ever</h4>
+                            <p>All of our products are made from resources that are harvested in a SUSTAINABLE way. This
+                                means that they can be re-grown and re-harvested over and over again. </p>
+                        </div>
+                    </div>
+                    <div class="blog" style="background:url(./images/home/blog2.jpg)">
+                        <div class="blog-content">
+                            <a href=""><img src="./images/home/arrow-white.png" alt=""></a>
+                            <h4>We Need Nature Now More Than Ever</h4>
+                            <p>All of our products are made from resources that are harvested in a SUSTAINABLE way. This
+                                means that they can be re-grown and re-harvested over and over again. </p>
+                        </div>
+                    </div>
+                    <div class="blog" style="background:url(./images/home/blog3.jpg)">
+                        <div class="blog-content">
+                            <a href=""><img src="./images/home/arrow-white.png" alt=""></a>
+                            <h4>We Need Nature Now More Than Ever</h4>
+                            <p>All of our products are made from resources that are harvested in a SUSTAINABLE way. This
+                                means that they can be re-grown and re-harvested over and over again. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="home-feedback">
+            <div class="container">
+                <div class="section-header">
+                    <div class="row align-items-end">
+                        <div class="col-md-6">
+                            <h2 class="section-title">Feedback</h2>
+                            <h3 class="section-sub-title">Nature Love</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 feedback-col">
+                        <div class="feedback-indi">
+                            <div class="feedback-img">
+                                <img src="./images/home/feedback.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="feedback-content">
+                                <p>
+                                    I was feeling like a low energy slug, overweight and burdened with chronic back
+                                    pain. I spent thousands of dollars on treatments and supplements which gave me
+                                    partial and temporary relief over years of efforts…
+                                </p>
+                                <h5>- Caty Muneo</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 feedback-col">
+                        <div class="feedback-indi">
+                            <div class="feedback-img">
+                                <img src="./images/home/feedback.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="feedback-content">
+                                <p>
+                                    I was feeling like a low energy slug, overweight and burdened with chronic back
+                                    pain. I spent thousands of dollars on treatments and supplements which gave me
+                                    partial and temporary relief over years of efforts…
+                                </p>
+                                <h5>- Kay Muneo</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section> -->
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img class="mb-2 img-fluid" src="./images/home/footer-logo.png" alt="">
+                    <p class="mt-2">WE CARE TO PROTECT</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-title">Follow us on</h5>
+                    <ul class="sm-icons">
+                        <li>
+                            <a href="#"><img src="./images/home/twitter.png" alt="Twitter"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="./images/home/facbook.png" alt="Facebook"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="./images/home/instagram.png" alt="instagram"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="./images/home/linkedin.png" alt="Linkedin"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="footer-quicklinks">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Posters</a></li>
+                        <li><a href="#">Share Your Story</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-center"><i>Thank you for stopping by!</i></p>
+        </div>
+        <div class="copyrights text-center text-uppercase">
+            © 2013 – <span id="current-year">2020</span> NatureVedas. ALL RIGHTS RESERVED
+        </div>
+    </footer>
+
+    <div class="overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+            <script xmlns="" />
+            <defs>
+                <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+                    <stop stop-color="#fff" stop-opacity="0" offset="0%"/>
+                    <stop stop-color="#fff" stop-opacity=".631" offset="63.146%"/>
+                    <stop stop-color="#fff" offset="100%"/>
+                </linearGradient>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)">
+                    <path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" stroke-width="2">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"/>
+                    </path>
+                    <circle fill="#fff" cx="36" cy="18" r="1">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous">
+    </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"
+                integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A=="
+                crossorigin="anonymous"></script>
+            <script src="./js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"
+                integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg=="
+                crossorigin="anonymous"></script>
+
+            <script src="./js/common.js"></script>
+            <script src="./js/main.js"></script>
+
+</body>
+
+</html>
